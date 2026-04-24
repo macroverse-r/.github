@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a bug in a macroverse-r package
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. A minimal reproducible example (reprex) lets maintainers diagnose and fix the issue quickly -- see https://www.tidyverse.org/help/#reprex for guidance.
+
+        Bugs specific to one package belong in that package's repo. Cross-cutting concerns can be opened against `macroverse-r/.github`.
+
+  - type: input
+    id: package
+    attributes:
+      label: Package and version
+      description: Which macroverse-r package, and which version?
+      placeholder: "icy 0.1.21"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reprex
+    attributes:
+      label: Minimal reproducible example
+      description: Paste a reprex. Use `reprex::reprex()` to format R output.
+      render: r
+    validations:
+      required: true
+
+  - type: textarea
+    id: session-info
+    attributes:
+      label: Session info
+      description: Output of `sessionInfo()`. Skip if already included in the reprex above via `reprex::reprex(session_info = TRUE)`.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened vs what you expected
+      description: Briefly describe the behaviour you observed and the behaviour you expected.
+    validations:
+      required: false

@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest a new feature for a macroverse-r package
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a feature. Before filing, search existing issues to avoid duplicates.
+
+        Feature requests specific to one package belong in that package's repo. Cross-cutting ideas can be opened against `macroverse-r/.github`.
+
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      description: Which macroverse-r package?
+      placeholder: "icy"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem does this feature solve? Why should it live in macroverse-r?
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-sketch
+    attributes:
+      label: Proposed API
+      description: A minimal code sketch showing how the feature would be used -- function name, arguments, return value.
+      render: r
+    validations:
+      required: false

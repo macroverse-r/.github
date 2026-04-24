@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or usage help
+    url: mailto:benjaminpeeters@mailoo.org
+    about: For usage questions, please email the maintainer rather than filing an issue.
