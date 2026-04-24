@@ -1,7 +1,3 @@
-## Package
-
-<package name, e.g. `icy`>
-
 ## Motivation
 
 <what problem does this feature solve? why should it live in macroverse-r?>

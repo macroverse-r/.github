@@ -10,15 +10,6 @@ body:
 
         Feature requests specific to one package belong in that package's repo. Cross-cutting ideas can be opened against `macroverse-r/.github`.
 
-  - type: input
-    id: package
-    attributes:
-      label: Package
-      description: Which macroverse-r package?
-      placeholder: "icy"
-    validations:
-      required: true
-
   - type: textarea
     id: motivation
     attributes:
