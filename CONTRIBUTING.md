@@ -39,4 +39,4 @@ Merge strategy is squash-and-merge: each PR lands on `main` as a single commit. 
 
 ## Code of Conduct
 
-By participating in this project you agree to abide by the Contributor Covenant (https://www.contributor-covenant.org/version/2/1/code_of_conduct/). Be kind; assume good faith.
+By participating in this project you agree to abide by the macroverse-r Code of Conduct (see `CODE_OF_CONDUCT.md`), which adopts the Contributor Covenant v2.1. Be kind; assume good faith.
