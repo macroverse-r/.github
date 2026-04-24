@@ -1,6 +1,6 @@
-## Package and version
+## Version
 
-<package name and version, e.g. `icy 0.1.21`>
+<version, e.g. `0.1.21`>
 
 ## Minimal reproducible example
 
