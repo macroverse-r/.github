@@ -1,0 +1,85 @@
+# Reusable PR-template-check workflow for macroverse-r packages.
+#
+# Verifies that the PR body contains all six required AUTHORITY section
+# header stems from macroverse-r/.github/PULL_REQUEST_TEMPLATE.md.
+# Closes the `gh pr create --body` / `--body-file` CLI bypass: even
+# when a PR is opened via CLI, this check rejects bodies missing the
+# template structure.
+#
+# First cut: stem-substring match (grep -Fq) on the leading words of
+# each header. The reusable matches `## Type of change` rather than
+# the full `## Type of change (pick one primary)` because contributors
+# often strip the parenthetical hint when filling in the body. False
+# positives can occur (a non-canonical header like `## Purposes`
+# substring-matches `## Purpose` and incorrectly passes); the
+# mv-pr-template agent applies stricter verbatim+ordering validation
+# upstream during /mv-pull-request, so this layered defense is
+# intentional.
+#
+# Consumers invoke as:
+#   on:
+#     pull_request:
+#       types: [opened, edited, reopened, synchronize]
+#   jobs:
+#     pr-template-check:
+#       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v0.0.1
+#
+# Versioning: macroverse-r is pre-1.0; consumers pin to immutable
+# patch tags (`@v0.0.1`, `@v0.0.2`, ...) rather than `@main`. The
+# contract is not yet stable enough for a moving major tag; `@v1`
+# will ship when the workflow API stabilises, coordinated with a
+# future ecosystem-wide v1 graduation. Per SemVer 0.x conventions,
+# minor bumps within `0.x.y` may be breaking, so do not pin a
+# floating `@v0` major tag.
+#
+# R-CMD-check is intentionally NOT centralized into a reusable
+# workflow. Each macroverse-r package owns its own
+# `.github/workflows/R-CMD-check.yaml` started from an
+# `r-lib/actions/examples/check-*` template, customised per-package
+# (cairo for pplot, data-loader sysreqs for macrodata,
+# `setup-tinytex` for vignette builders, etc.). This matches the
+# tidyverse pattern. pr-template-check is the only thing
+# centralized here -- it validates the org-default PR template,
+# which is package-independent.
+
+on:
+  workflow_call:
+
+name: pr-template-check
+
+permissions: {}
+
+jobs:
+  pr-template-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify required PR body headers
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          missing=()
+          for header in \
+            '## Purpose' \
+            '## Related issues' \
+            '## Type of change' \
+            '## Flags' \
+            '## Checklist' \
+            '## Follow-up work needed'
+          do
+            if ! grep -Fq "$header" <<< "$PR_BODY"; then
+              missing+=("$header")
+            fi
+          done
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::PR body is missing required AUTHORITY section header(s):"
+            for h in "${missing[@]}"; do
+              echo "::error::  - $h"
+            done
+            echo
+            echo "Required template: https://github.com/macroverse-r/.github/blob/main/PULL_REQUEST_TEMPLATE.md"
+            echo "If you opened this PR via 'gh pr create --body-file' or '--body', re-export with the full template."
+            exit 1
+          fi
+
+          echo "All required AUTHORITY section headers present."
