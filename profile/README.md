@@ -54,11 +54,11 @@ See [CONTRIBUTING.md](https://github.com/macroverse-r/.github/blob/main/CONTRIBU
 
 ## License
 
-The macroverse ecosystem uses a dual-licensing model: AGPL-3.0 for academic and non-commercial use; alternative licensing is available for commercial applications. For commercial licensing inquiries, see [SUPPORT.md](https://github.com/macroverse-r/.github/blob/main/SUPPORT.md).
+The macroverse ecosystem uses a dual-licensing model: AGPL-3.0 for academic and non-commercial use; alternative licensing is available for commercial applications. For commercial licensing inquiries, contact benjaminpeeters@protonmail.com.
 
 ## Maintainer
 
-Benjamin Peeters
-Postdoctoral Researcher, PIK (Potsdam Institute for Climate Impact Research)
-Contact: benjaminpeeters@protonmail.com
-Website: https://benjaminpeeters.com
+- Benjamin Peeters
+- Postdoctoral Researcher, PIK (Potsdam Institute for Climate Impact Research)
+- Contact: benjaminpeeters@protonmail.com
+- Website: https://benjaminpeeters.com

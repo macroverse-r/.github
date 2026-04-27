@@ -6,13 +6,7 @@ This file applies across every macroverse-r repository unless the repo overrides
 
 ## Reporting issues
 
-Before opening an issue, search existing ones. If the problem is new, include:
-
-- a minimal reprex (see https://www.tidyverse.org/help/#reprex),
-- the package and version, the R version, and `sessionInfo()`,
-- what you expected and what happened.
-
-Bugs specific to one package belong in that package's repo. Cross-cutting concerns can be opened against `macroverse-r/.github`.
+See [SUPPORT.md](SUPPORT.md) for where to file bugs and ask questions. The issue templates prompt for the required fields.
 
 ## Proposing changes
 

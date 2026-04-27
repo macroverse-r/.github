@@ -2,16 +2,14 @@
 
 Different questions go to different places.
 
-## Bugs
+## Make a reprex
 
-Bug reports for a specific package go to that package's issue tracker (e.g., https://github.com/macroverse-r/macrodata/issues for `macrodata`). Cross-cutting concerns can be opened against `macroverse-r/.github`.
+For bug reports and reproducibility-sensitive questions, make a minimal reprex first. The [reprex package](https://reprex.tidyverse.org) and the [tidyverse help page](https://www.tidyverse.org/help/) explain the convention. The issue templates prompt for the same fields.
 
-When filing a bug, include a minimal reprex (https://www.tidyverse.org/help/#reprex), the package and R versions, and `sessionInfo()`. The repo's issue templates prompt for these fields.
+## Where to ask
 
-## Usage questions
+- Bug in a specific package -- file an issue on that package's repo. Each `macroverse-r/<pkg>` repo carries the issue templates from this `.github` repo.
+- Cross-cutting concern (multi-package or unsure where it belongs) -- file an issue on `macroverse-r/.github`.
+- Usage question -- email the maintainer at benjaminpeeters@protonmail.com. GitHub Discussions are not yet enabled; revisit once activity warrants.
 
-For "how do I use X" questions, email the maintainer at benjaminpeeters@protonmail.com. GitHub Discussions are not currently enabled; this may change once the ecosystem stabilizes.
-
-## Commercial / consulting / licensing
-
-For commercial licensing inquiries or paid consulting, email benjaminpeeters@protonmail.com. The packages are AGPL-3.0 for non-commercial use; alternative licensing is available for commercial applications.
+Search existing issues before opening a new one.
