@@ -6,7 +6,7 @@ This file applies across every macroverse-r repository unless the repo overrides
 
 ## Reporting issues
 
-See [SUPPORT.md](SUPPORT.md) for where to file bugs and ask questions. The issue templates prompt for the required fields.
+See [SUPPORT.md](https://github.com/macroverse-r/.github/blob/main/SUPPORT.md) for where to file bugs and ask questions. The issue templates prompt for the required fields.
 
 ## Proposing changes
 
