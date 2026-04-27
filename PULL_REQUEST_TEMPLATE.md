@@ -6,17 +6,19 @@ Briefly describe what this PR does and why.
 
 Link related issues. Use `Closes #123` to auto-close on merge, `Fixes #123` for bugs, or `Related to #123` for loose connections.
 
-## Type of change
+## Type of change (pick one primary)
 
-- [ ] Bug fix
-- [ ] Refactoring (no behavior change)
-- [ ] New feature
-- [ ] Documentation only
+- [ ] Bug fix -- restores documented behavior; no API change
+- [ ] Feature -- new user-facing capability (new function, argument, behavior)
+- [ ] Refactor / internal -- reorganization, performance, internal helpers; no API change
+- [ ] Documentation -- roxygen, vignettes, README, NEWS only
+- [ ] Infrastructure -- `.github/`, `.claude_macroverse/`, CI, build, repo tooling
 
-### Does this introduce a breaking change? (affects users of exported APIs)
+## Flags (tick all that apply)
 
-- [ ] Yes -- describe the migration in the Purpose section
-- [ ] No
+- [ ] API change -- adds, renames, removes, or alters signature of any exported function
+- [ ] Breaking change -- downstream packages need code changes
+- [ ] Cross-package coordination -- touches a shared workspace or needs coordinated release
 
 ## Checklist
 
