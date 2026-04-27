@@ -24,9 +24,23 @@
 #     pr-template-check:
 #       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v0.0.1
 #
-# macroverse-r is pre-1.0: pin to immutable patch tags (`@v0.0.1`,
-# `@v0.0.2`, ...). See r-check.yml header for the versioning
-# rationale.
+# Versioning: macroverse-r is pre-1.0; consumers pin to immutable
+# patch tags (`@v0.0.1`, `@v0.0.2`, ...) rather than `@main`. The
+# contract is not yet stable enough for a moving major tag; `@v1`
+# will ship when the workflow API stabilises, coordinated with a
+# future ecosystem-wide v1 graduation. Per SemVer 0.x conventions,
+# minor bumps within `0.x.y` may be breaking, so do not pin a
+# floating `@v0` major tag.
+#
+# R-CMD-check is intentionally NOT centralized into a reusable
+# workflow. Each macroverse-r package owns its own
+# `.github/workflows/R-CMD-check.yaml` started from
+# `r-lib/actions/examples/check-standard.yaml`, customised
+# per-package (cairo for pplot, data-loader sysreqs for macrodata,
+# `setup-tinytex` for vignette builders, etc.). This matches the
+# tidyverse pattern. pr-template-check is the only thing
+# centralized here -- it validates the org-default PR template,
+# which is package-independent.
 
 on:
   workflow_call:
