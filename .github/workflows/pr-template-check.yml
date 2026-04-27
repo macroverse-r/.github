@@ -22,7 +22,11 @@
 #       types: [opened, edited, reopened, synchronize]
 #   jobs:
 #     pr-template-check:
-#       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v1
+#       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v0.0.1
+#
+# macroverse-r is pre-1.0: pin to immutable patch tags (`@v0.0.1`,
+# `@v0.0.2`, ...). See r-check.yml header for the versioning
+# rationale.
 
 on:
   workflow_call:

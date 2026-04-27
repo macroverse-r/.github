@@ -7,10 +7,14 @@
 #     pull_request:
 #   jobs:
 #     R-CMD-check:
-#       uses: macroverse-r/.github/.github/workflows/r-check.yml@v1
+#       uses: macroverse-r/.github/.github/workflows/r-check.yml@v0.0.1
 #
-# Pin to @v1 (moving major tag) rather than @main so consumers do not
-# get breaking action-pin bumps without a major-version tag move.
+# macroverse-r is pre-1.0: consumers pin to immutable patch tags
+# (`@v0.0.1`, `@v0.0.2`, ...) rather than `@main`. The contract is
+# not yet stable enough for a moving major tag; `@v1` will ship when
+# the workflow API stabilises. Per SemVer 0.x conventions, minor
+# bumps within `0.x.y` may be breaking, so do not pin a floating
+# `@v0` major tag.
 
 on:
   workflow_call:
