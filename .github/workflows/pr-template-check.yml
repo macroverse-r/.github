@@ -1,20 +1,25 @@
 # Reusable PR-template-check workflow for macroverse-r packages.
 #
 # Verifies that the PR body contains all six required AUTHORITY section
-# headers from macroverse-r/.github/PULL_REQUEST_TEMPLATE.md. Closes the
-# `gh pr create --body` / `--body-file` CLI bypass: even when a PR is
-# opened via CLI, this check rejects bodies missing the template
-# structure.
+# header stems from macroverse-r/.github/PULL_REQUEST_TEMPLATE.md.
+# Closes the `gh pr create --body` / `--body-file` CLI bypass: even
+# when a PR is opened via CLI, this check rejects bodies missing the
+# template structure.
 #
-# First cut: substring match (grep -Fq). False negatives would arise
-# only if a contributor added trailing text after a header (e.g.,
-# `## Purpose of change`) which is rare; the mv-pr-template agent
-# applies stricter validation before /mv-pull-request opens the PR.
+# First cut: stem-substring match (grep -Fq) on the leading words of
+# each header. The reusable matches `## Type of change` rather than
+# the full `## Type of change (pick one primary)` because contributors
+# often strip the parenthetical hint when filling in the body. False
+# positives can occur (a non-canonical header like `## Purposes`
+# substring-matches `## Purpose` and incorrectly passes); the
+# mv-pr-template agent applies stricter verbatim+ordering validation
+# upstream during /mv-pull-request, so this layered defense is
+# intentional.
 #
 # Consumers invoke as:
 #   on:
 #     pull_request:
-#       types: [opened, edited, synchronize]
+#       types: [opened, edited, reopened, synchronize]
 #   jobs:
 #     pr-template-check:
 #       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v1
@@ -24,8 +29,10 @@ on:
 
 name: pr-template-check
 
+permissions: {}
+
 jobs:
-  check-headers:
+  pr-template-check:
     runs-on: ubuntu-latest
     steps:
       - name: Verify required PR body headers
@@ -36,8 +43,8 @@ jobs:
           for header in \
             '## Purpose' \
             '## Related issues' \
-            '## Type of change (pick one primary)' \
-            '## Flags (tick all that apply)' \
+            '## Type of change' \
+            '## Flags' \
             '## Checklist' \
             '## Follow-up work needed'
           do
