@@ -1,0 +1,60 @@
+# Reusable PR-template-check workflow for macroverse-r packages.
+#
+# Verifies that the PR body contains all six required AUTHORITY section
+# headers from macroverse-r/.github/PULL_REQUEST_TEMPLATE.md. Closes the
+# `gh pr create --body` / `--body-file` CLI bypass: even when a PR is
+# opened via CLI, this check rejects bodies missing the template
+# structure.
+#
+# First cut: substring match (grep -Fq). False negatives would arise
+# only if a contributor added trailing text after a header (e.g.,
+# `## Purpose of change`) which is rare; the mv-pr-template agent
+# applies stricter validation before /mv-pull-request opens the PR.
+#
+# Consumers invoke as:
+#   on:
+#     pull_request:
+#       types: [opened, edited, synchronize]
+#   jobs:
+#     pr-template-check:
+#       uses: macroverse-r/.github/.github/workflows/pr-template-check.yml@v1
+
+on:
+  workflow_call:
+
+name: pr-template-check
+
+jobs:
+  check-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify required PR body headers
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          missing=()
+          for header in \
+            '## Purpose' \
+            '## Related issues' \
+            '## Type of change (pick one primary)' \
+            '## Flags (tick all that apply)' \
+            '## Checklist' \
+            '## Follow-up work needed'
+          do
+            if ! grep -Fq "$header" <<< "$PR_BODY"; then
+              missing+=("$header")
+            fi
+          done
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::PR body is missing required AUTHORITY section header(s):"
+            for h in "${missing[@]}"; do
+              echo "::error::  - $h"
+            done
+            echo
+            echo "Required template: https://github.com/macroverse-r/.github/blob/main/PULL_REQUEST_TEMPLATE.md"
+            echo "If you opened this PR via 'gh pr create --body-file' or '--body', re-export with the full template."
+            exit 1
+          fi
+
+          echo "All required AUTHORITY section headers present."
