@@ -12,7 +12,7 @@ Link related issues. Use `Closes #123` to auto-close on merge, `Fixes #123` for 
 - [ ] Feature -- new user-facing capability (new function, argument, behavior)
 - [ ] Refactor / internal -- reorganization, performance, internal helpers; no API change
 - [ ] Documentation -- roxygen, vignettes, README, NEWS only
-- [ ] Infrastructure -- `.github/`, `.claude_macroverse/`, CI, build, repo tooling
+- [ ] Infrastructure -- `.github/`, CI, build, repo tooling
 
 ## Flags (tick all that apply)
 
