@@ -34,9 +34,9 @@
 #
 # R-CMD-check is intentionally NOT centralized into a reusable
 # workflow. Each macroverse-r package owns its own
-# `.github/workflows/R-CMD-check.yaml` started from
-# `r-lib/actions/examples/check-standard.yaml`, customised
-# per-package (cairo for pplot, data-loader sysreqs for macrodata,
+# `.github/workflows/R-CMD-check.yaml` started from an
+# `r-lib/actions/examples/check-*` template, customised per-package
+# (cairo for pplot, data-loader sysreqs for macrodata,
 # `setup-tinytex` for vignette builders, etc.). This matches the
 # tidyverse pattern. pr-template-check is the only thing
 # centralized here -- it validates the org-default PR template,
